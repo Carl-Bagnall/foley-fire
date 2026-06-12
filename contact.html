@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Quote | Foley Fire Risk Assessment</title>
+  <meta name="description" content="Request a fire risk assessment quote from Foley Fire. Independent, BAFE SP205 accredited assessors covering Cheltenham, Gloucestershire, Bath, Bristol and the West Midlands.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====== Top bar ====== -->
+  <div class="topbar">
+    <div class="container">
+      <span class="topbar-note">Independent &amp; family-run · Cheltenham, Gloucestershire</span>
+      <span>
+        <a href="mailto:info@foleyfire.co.uk">info@foleyfire.co.uk</a>
+        &nbsp;·&nbsp;
+        <a href="tel:01242379069">01242 379069</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- ====== Header ====== -->
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <img src="https://static.wixstatic.com/media/9766cb_bf303b378dfb4107a0d7111b524a6821~mv2.png/v1/fill/w_600,h_159,al_c,q_85/Asset%2043_4x.png" alt="Foley Fire Risk Assessment">
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <span class="has-dropdown">
+          <a href="fire-risk-assessment.html">Fire Risk Assessment</a>
+          <span class="dropdown">
+            <a href="fire-risk-assessment.html"><strong>All assessments — overview</strong></a>
+            <a href="fra-heritage.html">Listed &amp; Heritage Buildings</a>
+            <a href="fra-high-rise.html">High-Rise Residential</a>
+            <a href="fra-construction.html">Construction Sites</a>
+            <a href="fra-holiday-lets.html">Holiday Accommodation</a>
+            <a href="fra-hmo-domestic.html">Domestic Premises &amp; HMOs</a>
+            <a href="fra-care-homes.html">Residential &amp; Nursing Homes</a>
+            <a href="fra-pre-occupation.html">Pre-Occupation &amp; Development</a>
+          </span>
+        </span>
+        <span class="has-dropdown">
+          <a href="services.html">Other Services</a>
+          <span class="dropdown">
+            <a href="services.html"><strong>All services — overview</strong></a>
+            <a href="service-consultancy.html">Fire Safety Consultancy</a>
+            <a href="service-fire-doors.html">Fire Door Surveys</a>
+            <a href="service-capacity.html">Capacity Calculations</a>
+            <a href="service-validation.html">Validation Services</a>
+          </span>
+        </span>
+        <a href="team.html">The Team</a>
+        <a href="contact.html" class="btn btn-primary">Request a quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====== Page head ====== -->
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow" style="color: var(--amber);">Contact</p>
+        <h1>Request a quote</h1>
+        <p>Tell us a little about your building and we'll come back with a fixed price — usually the same day. Prefer to talk? Call <a href="tel:01242379069" style="color:#fff;">01242 379069</a>.</p>
+      </div>
+    </div>
+
+    <!-- ====== Contact layout ====== -->
+    <section>
+      <div class="container contact-layout">
+
+        <!-- Form: real labels, phone + premises type, visible submit -->
+        <form class="contact-form" action="#" method="post">
+          <div class="form-row">
+            <div class="field">
+              <label for="first-name">First name <span class="req">*</span></label>
+              <input type="text" id="first-name" name="first-name" autocomplete="given-name" required>
+            </div>
+            <div class="field">
+              <label for="last-name">Last name</label>
+              <input type="text" id="last-name" name="last-name" autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="premises">Premises type <span class="req">*</span></label>
+              <select id="premises" name="premises" required>
+                <option value="" selected disabled>Select…</option>
+                <option>Listed / heritage building</option>
+                <option>High-rise residential</option>
+                <option>Block of flats / HMO</option>
+                <option>Holiday accommodation</option>
+                <option>Residential / nursing home</option>
+                <option>Construction site / new development</option>
+                <option>Office / commercial</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="location">Property location</label>
+              <input type="text" id="location" name="location" placeholder="e.g. Cheltenham">
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Tell us about your building</label>
+            <textarea id="message" name="message" placeholder="Approximate size, number of floors, anything unusual…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send enquiry</button>
+          <p class="form-note">We aim to respond within one working day. Your details are never shared.</p>
+        </form>
+
+        <!-- Direct contact + coverage -->
+        <aside class="contact-aside">
+          <div class="card">
+            <h3>Talk to us directly</h3>
+            <ul>
+              <li><span class="label">Call</span><a href="tel:01242379069">01242 379069</a></li>
+              <li><span class="label">Email</span><a href="mailto:info@foleyfire.co.uk">info@foleyfire.co.uk</a></li>
+              <li><span class="label">WhatsApp</span><a href="https://wa.me/447856510356">07856 510356</a></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Where we work</h3>
+            <p style="color: var(--ink-soft); font-size: 0.94rem;">Based in Cheltenham, covering Gloucestershire, Oxfordshire, Warwickshire, Wiltshire and the West Midlands — including Bristol, Bath, Birmingham, Oxford, Swindon and Worcester. Outside these areas? Ask — we travel for the right project.</p>
+          </div>
+          <div class="card">
+            <h3>What happens next</h3>
+            <p style="color: var(--ink-soft); font-size: 0.94rem;">We confirm scope and a fixed price, book a site visit at a time that suits you, and deliver a clear, prioritised report with photographs and an action plan.</p>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== Footer ====== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="https://static.wixstatic.com/media/9766cb_6e8d43c034d644b98a641f811eba1ebb~mv2.png/v1/fill/w_277,h_206,al_c,q_85/Asset%2044_4x.png" alt="Foley Fire Risk Assessment">
+        <p>Independent, family-run fire risk assessment and fire safety consultancy. BAFE SP205 accredited.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="fire-risk-assessment.html">Fire Risk Assessment</a></li>
+          <li><a href="service-consultancy.html">Fire Safety Consultancy</a></li>
+          <li><a href="service-fire-doors.html">Fire Door Surveys</a></li>
+          <li><a href="service-capacity.html">Capacity Calculations</a></li>
+          <li><a href="service-validation.html">Validation Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="team.html">The Team</a></li>
+          <li><a href="index.html#accreditations">Accreditations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><span>📞</span><a href="tel:01242379069">01242 379069</a></li>
+          <li><span>✉️</span><a href="mailto:info@foleyfire.co.uk">info@foleyfire.co.uk</a></li>
+          <li><span>💬</span><a href="https://wa.me/447856510356">WhatsApp 07856 510356</a></li>
+          <li><span>📍</span><span>Cheltenham, Gloucestershire</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div class="container">
+        <span>© 2026 Foley Fire Risk Assessment Ltd. Registered in England &amp; Wales.</span>
+        <span>Company No. 15194339 · VAT 452741202</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
