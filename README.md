@@ -61,6 +61,17 @@ Type: Source Serif 4 for headings, Inter for body (Google Fonts).
 Copy `contact.html`, keep the topbar/header/footer blocks, swap the `<main>`
 content. One `<h1>` per page; sections use `h2`, cards use `h3`.
 
+## Password protection (Cloudflare Workers)
+
+The site deploys as a Cloudflare Worker with static assets.
+`worker.js` (wired up via `wrangler.jsonc` with `run_worker_first`)
+wraps the deployed site in HTTP Basic Auth. Set `SITE_PASSWORD` in the
+Worker's Settings → Variables and Secrets. Any username works; the
+password must match. With no variable set the site returns 503 (fails
+closed). Local viewing is unaffected — the worker only runs on
+Cloudflare. To go public: delete `worker.js` and remove the `main` and
+`run_worker_first` lines from `wrangler.jsonc`.
+
 ## Viewing
 
 Open `index.html` directly in a browser, or serve locally:
