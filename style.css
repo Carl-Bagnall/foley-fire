@@ -526,7 +526,7 @@ section { padding: 88px 0; }
 .google-badge {
   height: 56px;
   width: auto;
-  background: var(--white);
+  /*background: var(--white);*/
   border-radius: 8px;
   padding: 0.5rem 0.9rem;
 }
@@ -653,6 +653,8 @@ section { padding: 88px 0; }
 
 .footer-brand img { height: 84px; width: auto; margin-bottom: 1rem; }
 .footer-brand p { max-width: 280px; }
+.footer-checkatrade { display: inline-block; margin-top: 1rem; line-height: 0; }
+.footer-checkatrade img { height: 28px; padding: 6px 0px; width: auto; display: block; }
 
 .site-footer h4 {
   font-family: var(--sans);
