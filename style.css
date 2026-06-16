@@ -222,6 +222,7 @@ section { padding: 88px 0; }
 }
 
 .dropdown a:hover { background: var(--paper); color: var(--red); }
+.nav-divider { display: block; height: 1px; background: var(--line); margin: 0.15rem 0.8rem 0.15rem; }
 
 /* Mobile nav toggle */
 .nav-toggle {
