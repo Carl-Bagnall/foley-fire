@@ -1,0 +1,12 @@
+# Files in the assets directory (".") that should NOT be served as
+# static assets. Gitignore syntax. Keeps CI tooling and source out of
+# the deployed asset bundle (Cloudflare rejects assets over 25 MiB).
+node_modules
+.git
+.github
+.assetsignore
+README.md
+wrangler.jsonc
+worker.js
+package.json
+package-lock.json
