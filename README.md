@@ -72,6 +72,31 @@ closed). Local viewing is unaffected — the worker only runs on
 Cloudflare. To go public: delete `worker.js` and remove the `main` and
 `run_worker_first` lines from `wrangler.jsonc`.
 
+## Deployment (automatic)
+
+Pushing to `main` deploys automatically via GitHub Actions
+(`.github/workflows/deploy.yml`, which runs `wrangler deploy`). No local
+Wrangler install or Cloudflare login is needed on any device — just git.
+
+One-time setup, done once in the GitHub repo (Settings → Secrets and
+variables → Actions):
+
+- `CLOUDFLARE_API_TOKEN` — a token with the **Edit Cloudflare Workers**
+  permission (My Profile → API Tokens → Create Token).
+- `CLOUDFLARE_ACCOUNT_ID` — from the Cloudflare dashboard URL or the
+  Workers & Pages overview.
+
+`SITE_PASSWORD` is a Worker secret set in the Cloudflare dashboard and
+persists across deploys — it is not stored in the repo.
+
+To deploy manually instead (e.g. from a machine with Wrangler set up):
+`npx wrangler deploy`.
+
+## Working across devices
+
+The repo is fully self-contained — clone it anywhere, edit, commit, push,
+and the Action deploys. No build step, no files outside the repo.
+
 ## Viewing
 
 Open `index.html` directly in a browser, or serve locally:
