@@ -1,0 +1,50 @@
+name: Preview on Cloudflare Workers
+
+# Uploads a new Worker *version* for any non-main branch and prints its
+# preview URL. Versions are uploaded, not deployed, so production traffic
+# on main is never affected. The preview is the same Worker, so it stays
+# behind the SITE_PASSWORD basic-auth gate.
+
+on:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: preview-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Upload preview version
+        id: preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -o pipefail
+          out=$(npx --yes wrangler@4.100.0 versions upload 2>&1 | tee /dev/stderr)
+          url=$(printf '%s\n' "$out" | grep -oE 'https://[A-Za-z0-9.-]+workers\.dev' | head -n1)
+          {
+            echo "## Cloudflare preview"
+            echo ""
+            echo "Branch: \`${GITHUB_REF_NAME}\`"
+            if [ -n "$url" ]; then
+              echo ""
+              echo "Preview URL: $url"
+              echo ""
+              echo "_Behind the same site password as production._"
+            else
+              echo ""
+              echo "No preview URL found in output. Check that preview URLs are"
+              echo "enabled for this Worker (Cloudflare dashboard → Worker →"
+              echo "Settings → Domains & Routes → Preview URLs)."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

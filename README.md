@@ -92,6 +92,16 @@ persists across deploys — it is not stored in the repo.
 To deploy manually instead (e.g. from a machine with Wrangler set up):
 `npx wrangler deploy`.
 
+## Preview deploys (before main)
+
+`.github/workflows/preview.yml` runs on any push to a branch other than
+`main`. It uploads a new Worker *version* (`wrangler versions upload`)
+instead of deploying, so production on `main` is untouched, and prints a
+unique preview URL to the Action's run summary. The preview is the same
+Worker, so it stays behind `SITE_PASSWORD`. Requires "Preview URLs" to be
+enabled for the Worker (Cloudflare dashboard → Worker → Settings →
+Domains & Routes).
+
 ## Working across devices
 
 The repo is fully self-contained — clone it anywhere, edit, commit, push,
