@@ -95,12 +95,16 @@ To deploy manually instead (e.g. from a machine with Wrangler set up):
 ## Preview deploys (before main)
 
 `.github/workflows/preview.yml` runs on any push to a branch other than
-`main`. It uploads a new Worker *version* (`wrangler versions upload`)
-instead of deploying, so production on `main` is untouched, and prints a
-unique preview URL to the Action's run summary. The preview is the same
-Worker, so it stays behind `SITE_PASSWORD`. Requires "Preview URLs" to be
-enabled for the Worker (Cloudflare dashboard → Worker → Settings →
-Domains & Routes).
+`main`. It deploys to a dedicated **staging Worker** (`staging-foley-fire`,
+separate from production), so the preview always lives at one stable URL:
+`https://staging-foley-fire.carlbagnall.workers.dev`. Each preview push
+overwrites this single staging Worker; production (`foley-fire` on `main`)
+is never touched. The URL is also written to the Action's run summary.
+
+The staging Worker reuses `worker.js`, so it stays behind HTTP Basic Auth.
+One-time setup: after the first preview deploy creates the Worker, set
+`SITE_PASSWORD` on it in the Cloudflare dashboard (`staging-foley-fire` →
+Settings → Variables and Secrets). Until then it returns 503 (fails closed).
 
 ## Working across devices
 
