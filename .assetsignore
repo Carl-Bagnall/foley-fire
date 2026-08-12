@@ -7,6 +7,5 @@ node_modules
 .assetsignore
 README.md
 wrangler.jsonc
-worker.js
 package.json
 package-lock.json

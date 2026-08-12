@@ -61,16 +61,11 @@ Type: Source Serif 4 for headings, Inter for body (Google Fonts).
 Copy `contact.html`, keep the topbar/header/footer blocks, swap the `<main>`
 content. One `<h1>` per page; sections use `h2`, cards use `h3`.
 
-## Password protection (Cloudflare Workers)
+## Access
 
-The site deploys as a Cloudflare Worker with static assets.
-`worker.js` (wired up via `wrangler.jsonc` with `run_worker_first`)
-wraps the deployed site in HTTP Basic Auth. Set `SITE_PASSWORD` in the
-Worker's Settings → Variables and Secrets. Any username works; the
-password must match. With no variable set the site returns 503 (fails
-closed). Local viewing is unaffected — the worker only runs on
-Cloudflare. To go public: delete `worker.js` and remove the `main` and
-`run_worker_first` lines from `wrangler.jsonc`.
+The site is public — it deploys as static assets with no Worker in front
+(`wrangler.jsonc` has no `main`). The earlier HTTP Basic Auth gate
+(`worker.js` + `SITE_PASSWORD`) has been removed now the site is live.
 
 ## Deployment (automatic)
 
@@ -86,9 +81,6 @@ variables → Actions):
 - `CLOUDFLARE_ACCOUNT_ID` — from the Cloudflare dashboard URL or the
   Workers & Pages overview.
 
-`SITE_PASSWORD` is a Worker secret set in the Cloudflare dashboard and
-persists across deploys — it is not stored in the repo.
-
 To deploy manually instead (e.g. from a machine with Wrangler set up):
 `npx wrangler deploy`.
 
@@ -101,10 +93,7 @@ separate from production), so the preview always lives at one stable URL:
 overwrites this single staging Worker; production (`foley-fire` on `main`)
 is never touched. The URL is also written to the Action's run summary.
 
-The staging Worker reuses `worker.js`, so it stays behind HTTP Basic Auth.
-One-time setup: after the first preview deploy creates the Worker, set
-`SITE_PASSWORD` on it in the Cloudflare dashboard (`staging-foley-fire` →
-Settings → Variables and Secrets). Until then it returns 503 (fails closed).
+Like production, the staging Worker serves static assets with no auth gate.
 
 ## Working across devices
 

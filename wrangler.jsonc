@@ -1,10 +1,7 @@
 {
   "name": "foley-fire",
   "compatibility_date": "2026-06-01",
-  "main": "worker.js",
   "assets": {
-    "directory": ".",
-    "binding": "ASSETS",
-    "run_worker_first": true
+    "directory": "."
   }
 }
