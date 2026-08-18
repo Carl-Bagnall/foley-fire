@@ -39,11 +39,22 @@ const REDIRECTS = {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    let redirect = false;
 
-    // Old-URL 301 redirects (match ignoring any trailing slash)
+    // Canonical host: www -> apex (only fires on the live domain)
+    if (url.hostname === "www.foleyfire.co.uk") {
+      url.hostname = "foleyfire.co.uk";
+      redirect = true;
+    }
+
+    // Old Wix URL -> new path (match ignoring any trailing slash)
     const path = url.pathname.replace(/\/+$/, "") || "/";
-    const dest = REDIRECTS[path];
-    if (dest) return Response.redirect(url.origin + dest, 301);
+    if (REDIRECTS[path]) {
+      url.pathname = REDIRECTS[path];
+      redirect = true;
+    }
+
+    if (redirect) return Response.redirect(url.toString(), 301);
 
     if (url.pathname === "/api/contact") {
       if (request.method !== "POST") return json({ ok: false, error: "Method not allowed" }, 405);
