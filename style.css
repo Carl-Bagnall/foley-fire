@@ -903,6 +903,17 @@ section { padding: 88px 0; }
 
 .contact-form .btn { width: 100%; justify-content: center; }
 
+/* Honeypot — visually hidden, off-screen; real users never see or fill it */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-form .cf-turnstile { margin: 0 0 1.15rem; }
+
 .form-note { font-size: 0.83rem; color: var(--ink-soft); margin-top: 0.9rem; text-align: center; }
 
 .contact-aside .card {
