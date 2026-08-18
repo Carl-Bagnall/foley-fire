@@ -39,27 +39,28 @@ const REDIRECTS = {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    let redirect = false;
 
-    // Canonical host: www -> apex (only fires on the live domain)
+    // Form API — handle FIRST, never redirect it. A redirect on this POST
+    // (e.g. www -> apex) is cross-origin and makes the browser fetch fail
+    // with "Failed to fetch".
+    if (url.pathname === "/api/contact") {
+      if (request.method !== "POST") return json({ ok: false, error: "Method not allowed" }, 405);
+      return handleContact(request, env);
+    }
+
+    // Canonical host + old-URL 301 redirects (page navigation only)
+    let redirect = false;
     if (url.hostname === "www.foleyfire.co.uk") {
       url.hostname = "foleyfire.co.uk";
       redirect = true;
     }
-
-    // Old Wix URL -> new path (match ignoring any trailing slash)
     const path = url.pathname.replace(/\/+$/, "") || "/";
     if (REDIRECTS[path]) {
       url.pathname = REDIRECTS[path];
       redirect = true;
     }
-
     if (redirect) return Response.redirect(url.toString(), 301);
 
-    if (url.pathname === "/api/contact") {
-      if (request.method !== "POST") return json({ ok: false, error: "Method not allowed" }, 405);
-      return handleContact(request, env);
-    }
     return env.ASSETS.fetch(request);
   },
 };
