@@ -72,7 +72,7 @@ async function handleContact(request, env) {
     return json({ ok: false, error: "Please enter a valid email address." }, 400);
 
   const name = [firstName, lastName].filter(Boolean).join(" ");
-  const subject = `Quote request — ${premises}${location ? ` (${location})` : ""}`;
+  const subject = `Quote request: ${premises}${location ? ` (${location})` : ""}`;
   const text = [
     "New quote request from the website:",
     "",
