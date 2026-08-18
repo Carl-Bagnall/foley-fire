@@ -17,9 +17,34 @@ const json = (obj, status = 200) =>
     headers: { "content-type": "application/json; charset=utf-8" },
   });
 
+// 301 redirects from the old Wix URLs to the new pages (preserves SEO).
+const REDIRECTS = {
+  "/listed-and-heritage-buildings-assessment": "/fra-heritage",
+  "/high-rise-fire-risk-assessments": "/fra-high-rise",
+  "/construction-fire-risk-assessments": "/fra-construction",
+  "/holiday-let-fire-risk-assessments": "/fra-holiday-lets",
+  "/hmo-and-domestic-fire-risk-assessments": "/fra-hmo-domestic",
+  "/nursing-home-fire-risk-assessments": "/fra-care-homes",
+  "/pre-occupation-fire-risk-assessments": "/fra-pre-occupation",
+  "/fire-safety-services": "/services",
+  "/fire-safety-consultancy": "/service-consultancy",
+  "/fire-door-surveys": "/service-fire-doors",
+  "/fire-safety-capacity-calculations": "/service-capacity",
+  // Validation page retired -> send to the services hub rather than 404
+  "/fire-risk-assessment-report-validation": "/services",
+  "/about-foley-fire": "/team",
+  "/contact-us": "/contact",
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // Old-URL 301 redirects (match ignoring any trailing slash)
+    const path = url.pathname.replace(/\/+$/, "") || "/";
+    const dest = REDIRECTS[path];
+    if (dest) return Response.redirect(url.origin + dest, 301);
+
     if (url.pathname === "/api/contact") {
       if (request.method !== "POST") return json({ ok: false, error: "Method not allowed" }, 405);
       return handleContact(request, env);
