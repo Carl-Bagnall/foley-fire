@@ -340,6 +340,20 @@ section { padding: 88px 0; }
 
 .accreditations p { color: var(--ink-soft); margin-top: 0.9rem; }
 
+/* Team page: "Our experience" text + image split */
+.experience-split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.experience-split .accred-intro { max-width: none; }
+.experience-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.experience-img img { display: block; width: 100%; height: auto; }
+@media (max-width: 860px) {
+  .experience-split { grid-template-columns: 1fr; gap: 2rem; }
+}
+
 /* ============================================================
    Services
    ============================================================ */
